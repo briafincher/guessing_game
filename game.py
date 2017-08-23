@@ -9,7 +9,7 @@ def play_game():
     num_guesses = 0
     guess = 0
 
-    while True:
+    while num_guesses < 10:
         num_guesses += 1
 
         try:
@@ -27,20 +27,24 @@ def play_game():
         else:
             print 'Great job, {}! You found my number in {} guesses.'.format(name, num_guesses)
             break
+    if num_guesses >= 10:
+        print 'Too many tries!'
     return num_guesses
 
 print 'Hello there! What is your name?'
 name = raw_input('Name: ')
 
-best_score = play_game()
-print 'Your best score is {}.'.format(best_score)
+score1 = play_game()
+best_score = score1
+if score1 < 10:
+    print 'Your best score is {}.'.format(best_score)
 
 while True:
     new_game = raw_input('Do you wanna play another round?: ')
     if new_game == 'yes':
         score = play_game()
         if best_score > score:
-            best_score = score
+                best_score = score
         print "Your best score is {}".format(best_score)
     else:
         break
